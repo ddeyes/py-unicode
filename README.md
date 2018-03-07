@@ -1,6 +1,8 @@
 (py-unicode)基于python33，运行于win7中文环境，主要是关于python3.x中unicode以及encoding方面的深入理解，主要涉及到的知识点包括：
-###1 ASCII、UNICODE、GBK、CP936、MSCS
- **1.1 ASCII**
+
+### 1 ASCII、UNICODE、GBK、CP936、MSCS
+
+**1.1 ASCII**
 
 美国信息交换标准码。 在计算机的存储单元中，一个ASCII码值占一个字节(8个二进制位)，但其最高位(b7)用作奇偶校验位。ASCII(American Standard Code for Information Interchange)，是一种单字节的编码。计算机世界里一开始只有英文，而单字节可以表示256个不同的字符，可以表示所有的英文字符和许多的控制符号。不过ASCII只用到了其中的一半（\x80以下），这也是MBCS得以实现的基础。
 
@@ -44,7 +46,7 @@ GB是中国荒谬的国家标准。GB2312、GBK、GB18030各为前一个的扩�
 
 MBCS(Multi-Byte Character Set)是这些编码的统称。目前为止大家都是用了双字节，所以有时候也叫做DBCS(Double-Byte Character Set)。必须明确的是，MBCS并不是某一种特定的编码，Windows里根据你设定的区域不同，MBCS指代不同的编码，而Linux里无法使用MBCS作为编码。在Windows中你看不到MBCS这几个字符，因为微软为了更加洋气，使用了ANSI来吓唬人，记事本的另存为对话框里编码ANSI就是MBCS。同时，在简体中文Windows默认的区域设定里，指代GBK。
 
-###2 open函数
+### 2 open函数
 open状态rb对应的是_io.BufferedReader,r对应的是_io.TextIOWrapper
 
     class io.TextIOWrapper(buffer, encoding=None, errors=None, newline=None, 
@@ -54,7 +56,7 @@ A buffered text stream over a BufferedIOBase binary stream. It inherits TextIOBa
 encoding gives the name of the encoding that the stream will be decoded or encoded with. It 
 defaults to locale.getpreferredencoding().
 
-###3 encode和decode方法
+### 3 encode和decode方法
 字符串在Python内部的表示是unicode编码，因此，在做编码转换时，通常需要以unicode作为中间编码，即先将其他编码的字符串解码（decode）成unicode，再从unicode编码（encode）成另一种编码decode的作用是将其他编码的字符串转换成unicode编码，如str1.decode('gb2312')，表示将gb2312编码的字符串str1转换成unicode编码。 encode的作用是将unicode编码转换成其他编码的字符串，如str2.encode('gb2312')，表示将unicode编码的字符串str2转换成gb2312编码。 
 
 因此，转码的时候一定要先搞明白，字符串str是什么编码，然后decode成unicode，然后再encode成其他编码。代码中字符串的默认编码与代码文件本身的编码一致。 
@@ -65,7 +67,7 @@ defaults to locale.getpreferredencoding().
 其转换成其他编码。通常，在没有指定特定的编码方式时，都是使用的系统默认编码创建的代码文件
 
 
-###4 相关代码
+### 4 相关代码
 
 python默认编码
 ```
@@ -138,7 +140,7 @@ def write_file_append(filename,string):
 ```
 
 
-###5 参考资料
+### 5 参考资料
 * python unicode howto:(unicode codepoints): http://docs.python.org/3/howto/unicode.html
 
 * python unicode&encoding: http://docs.python.org/3.3/library/codecs.html#encodings-and-unicode
